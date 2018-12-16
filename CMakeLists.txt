@@ -83,7 +83,7 @@ else()
     set_target_properties(gg PROPERTIES COMPILE_FLAGS "-std=c11")
 endif()
 set_target_properties(gg PROPERTIES POSITION_INDEPENDENT_CODE ${BUILD_FPIC}
-                                    SOVERSION 1)  # bump whenever interface has changes or removals
+)                                    #SOVERSION 1)  # bump whenever interface has changes or removals
 
 if(${BUILD_SHARED_LIBS})
     target_link_libraries(gg PRIVATE ${LIBC_INTERJECT})
@@ -129,7 +129,7 @@ if(${INSTALL_PYMOD})
     install(DIRECTORY gau2grid
             DESTINATION ${CMAKE_INSTALL_LIBDIR}${PYMOD_INSTALL_LIBDIR}
             USE_SOURCE_PERMISSIONS
-            FILES_MATCHING PATTERN "*.py" PATTERN "*.npz")
+            FILES_MATCHING PATTERN "*.py" PATTERN "*.npz" PATTERN "*.pkl")
 
     install(FILES $<TARGET_FILE:gg>
             DESTINATION ${CMAKE_INSTALL_LIBDIR}${PYMOD_INSTALL_LIBDIR}/gau2grid)
