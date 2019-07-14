@@ -19,10 +19,13 @@ cgg = None
 # First check the local folder
 try:
     abs_path = os.path.dirname(os.path.abspath(__file__))
+    print('abs_path', abs_path)
     cgg = np.ctypeslib.load_library("gg", abs_path)
+    print('cgg', cgg)
     __libgg_path = os.path.join(abs_path, cgg._name)
     __lib_found = True
-except OSError:
+except OSError as e:
+    print(e)
     cgg = None
 
 __order_enum = {
